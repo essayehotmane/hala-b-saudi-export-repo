@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "779379508475",
+    "project_id": "hala-b-saudi-test",
+    "storage_bucket": "hala-b-saudi-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779379508475:android:53bbc0543003baec561c5e",
+        "android_client_info": {
+          "package_name": "com.halabsaudiappreactnativeversion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZTiH3UryRoR1EtkEqAMysVxFOa0JIYeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

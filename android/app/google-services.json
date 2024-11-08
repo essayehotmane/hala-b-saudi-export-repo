@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "939551727593",
+    "project_id": "hala-b-saudi",
+    "storage_bucket": "hala-b-saudi.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939551727593:android:9afe9356ce6981b1a83578",
+        "android_client_info": {
+          "package_name": "com.halabsaudiappreactnativeversion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcGLN4uCEuapuqaoYxcnFePTHxdmt6-3E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
