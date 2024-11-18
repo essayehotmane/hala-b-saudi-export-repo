@@ -148,6 +148,9 @@ const Login = ({navigation}: RouterProps) => {
       setModalVisible(false);
     } catch (error) {
       console.log('Error signing in: ', error);
+      Alert.alert('Sign in error', error.toString(), [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ]);
     }
   };
 
