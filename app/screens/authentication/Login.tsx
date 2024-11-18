@@ -98,12 +98,13 @@ const Login = ({navigation}: RouterProps) => {
   }, []);
 
   const handleNextPress = () => {
-    if (phoneNumber.length >= 10) {
+    if (phoneNumber.length >= 9) {
       // TODO : check this
       // Adjusted for phone number length
       if (isPrivacyChecked && isTermsChecked) {
         setModalVisible(true);
       } else {
+        console.log('sdfsdf');
         Alert.alert(
           capitalizeFirstLetter(t('confirm')),
           capitalizeFirstLetter(t('accept_pp_and_tou')),
@@ -148,9 +149,6 @@ const Login = ({navigation}: RouterProps) => {
       setModalVisible(false);
     } catch (error) {
       console.log('Error signing in: ', error);
-      Alert.alert('Sign in error', error.toString(), [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ]);
     }
   };
 
