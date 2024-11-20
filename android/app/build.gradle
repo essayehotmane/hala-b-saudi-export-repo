@@ -84,7 +84,7 @@ android {
         applicationId "com.halabsaudiappreactnativeversion"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
+        versionCode 5
         versionName "1.0.2"
     }
     signingConfigs {
@@ -103,7 +103,9 @@ android {
     }
     buildTypes {
         debug {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            shrinkResources false
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
