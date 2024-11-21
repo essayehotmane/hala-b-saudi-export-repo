@@ -123,7 +123,6 @@ const Home = () => {
               }
             };
             getCountriesAncCities();
-            setIsCountryAndCitySelectionVisible(true);
           }
         }
 
@@ -134,6 +133,25 @@ const Home = () => {
       }
     };
     getUserFromAS();
+  }, [dispatch]);
+
+  useEffect(() => {
+    const getSelectedCity = async () => {
+      try {
+        // Dispatch action to get selected city
+        const selectedCity = await dispatch(getCityFromStorage());
+        console.log('selected city ?', selectedCity.payload);
+
+        // If no city is selected, show the selection modal
+        if (!selectedCity.payload) {
+          setIsCountryAndCitySelectionVisible(true);
+        }
+      } catch (error) {
+        console.error('Error fetching selected city:', error);
+      }
+    };
+
+    getSelectedCity();
   }, [dispatch]);
 
   useEffect(() => {
