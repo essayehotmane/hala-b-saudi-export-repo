@@ -105,6 +105,24 @@ const Profile = () => {
     );
   };
 
+  const confirmDelete = () => {
+    Alert.alert(
+      capitalizeFirstLetter(t('confirm')),
+      capitalizeFirstLetter(t('Are you sure you want to delete your account?')),
+      [
+        {
+          text: capitalizeFirstLetter(t('cancel')),
+          style: 'cancel',
+        },
+        {
+          text: capitalizeFirstLetter(t('Ok')),
+          onPress: handleDeleteAccount,
+        },
+      ],
+      {cancelable: true},
+    );
+  };
+
   const handleLogout = async () => {
     try {
       await auth().signOut();
@@ -114,6 +132,28 @@ const Profile = () => {
       alert(`Error during logout: ${error.message}`);
     }
   };
+
+  
+  const handleDeleteAccount = async () => {
+    try {
+      const user = auth().currentUser;
+  
+      if (user) {
+        await user.delete(); // Delete the Firebase auth account
+        handleLogout()
+      } else {
+        alert('No user found to delete.');
+      }
+    } catch (error) {
+      if (error.code === 'auth/requires-recent-login') {
+        alert('You need to re-login before deleting your account. Please log in again and try.');
+        navigation.navigate('Login'); // Navigate to Login to re-authenticate
+      } else {
+        alert(`Error during account deletion: ${error.message}`);
+      }
+    }
+  };
+  
 
   const handleUsernameSave = async (newName: string) => {
     try {
@@ -177,6 +217,11 @@ const Profile = () => {
       icon: 'log-out-outline',
       title: capitalizeFirstLetter(t('logout')),
       onClick: confirmLogout,
+    },
+    {
+      icon: 'trash-outline',
+      title: capitalizeFirstLetter(t('delete account')),
+      onClick: confirmDelete,
     },
   ];
 
