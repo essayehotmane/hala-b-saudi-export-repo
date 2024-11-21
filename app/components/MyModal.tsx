@@ -1,6 +1,12 @@
-// MyModal.tsx
 import React from 'react';
-import {Modal, View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  Modal,
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 
 interface MyModalProps {
   visible: boolean;
@@ -11,18 +17,15 @@ interface MyModalProps {
   editText: string;
   nextText: string;
   code: string;
+  isLoading: boolean;
 }
 
 const formatPhoneNumber = (phoneNumber: string): string => {
-  // Convert number to string if it isn't already
   let numberString = phoneNumber?.toString();
-
-  // Use regex to insert spaces
   let formattedNumber = numberString?.replace(
     /(\d{3})(\d{3})(\d{3})/,
     '$1 $2 $3',
   );
-
   return formattedNumber;
 };
 
@@ -35,6 +38,7 @@ const MyModal: React.FC<MyModalProps> = ({
   editText,
   nextText,
   code,
+  isLoading,
 }) => {
   return (
     <Modal
@@ -48,11 +52,21 @@ const MyModal: React.FC<MyModalProps> = ({
             {code + ' ' + formatPhoneNumber(number)}
           </Text>
           <Text style={styles.modalContent}>{title}</Text>
-          <TouchableOpacity style={styles.editButton} onPress={onClose}>
+          <TouchableOpacity
+            style={[styles.editButton, isLoading && styles.disabledButton]}
+            onPress={onClose}
+            disabled={isLoading}>
             <Text style={styles.editButtonText}>{editText}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.nextButton} onPress={onConfirm}>
-            <Text style={styles.closeButtonText}>{nextText}</Text>
+          <TouchableOpacity
+            style={[styles.nextButton, isLoading && styles.disabledButton]}
+            onPress={onConfirm}
+            disabled={isLoading}>
+            {isLoading ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <Text style={styles.closeButtonText}>{nextText}</Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>
@@ -90,6 +104,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
+    marginBottom: 10,
   },
   nextButton: {
     backgroundColor: '#00502A',
@@ -106,6 +121,9 @@ const styles = StyleSheet.create({
   closeButtonText: {
     color: '#fff',
     fontSize: 16,
+  },
+  disabledButton: {
+    opacity: 0.6,
   },
 });
 

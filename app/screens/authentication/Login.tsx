@@ -50,6 +50,8 @@ const Login = ({navigation}: RouterProps) => {
   const language = useSelector(selectLanguage);
   const languageLoading = useSelector(loadingLanguage);
   const translations = useSelector(selectTranslations);
+  const [isLoginLoading, setIsLoginLoading] = useState(false);
+
   // const [copiedText, setCopiedText] = useState('');
 
   const fetchCopiedText = async () => {
@@ -140,6 +142,7 @@ const Login = ({navigation}: RouterProps) => {
   const signInWithPhoneNumber = async phoneNumber => {
     try {
       console.log('number ?', code + phoneNumber);
+      setIsLoginLoading(true);
 
       const confirmation = await auth().signInWithPhoneNumber(
         code + phoneNumber,
@@ -148,6 +151,7 @@ const Login = ({navigation}: RouterProps) => {
       setshowNumberForm(false);
       setModalVisible(false);
     } catch (error) {
+      setIsLoginLoading(false);
       console.log('Error signing in: ', error);
     }
   };
@@ -307,6 +311,7 @@ const Login = ({navigation}: RouterProps) => {
         title={capitalizeFirstLetter(t('is_this_the_correct_number'))}
         editText={capitalizeFirstLetter(t('edit'))}
         nextText={capitalizeFirstLetter(t('next'))}
+        isLoading={isLoginLoading}
       />
     </ScrollView>
   );
