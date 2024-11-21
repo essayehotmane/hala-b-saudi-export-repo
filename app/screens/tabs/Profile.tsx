@@ -133,27 +133,27 @@ const Profile = () => {
     }
   };
 
-  
   const handleDeleteAccount = async () => {
     try {
       const user = auth().currentUser;
-  
+
       if (user) {
         await user.delete(); // Delete the Firebase auth account
-        handleLogout()
+        handleLogout();
       } else {
         alert('No user found to delete.');
       }
     } catch (error) {
       if (error.code === 'auth/requires-recent-login') {
-        alert('You need to re-login before deleting your account. Please log in again and try.');
+        alert(
+          'You need to re-login before deleting your account. Please log in again and try.',
+        );
         navigation.navigate('Login'); // Navigate to Login to re-authenticate
       } else {
         alert(`Error during account deletion: ${error.message}`);
       }
     }
   };
-  
 
   const handleUsernameSave = async (newName: string) => {
     try {
@@ -220,7 +220,7 @@ const Profile = () => {
     },
     {
       icon: 'trash-outline',
-      title: capitalizeFirstLetter(t('delete account')),
+      title: capitalizeFirstLetter(t('delete_my_account_and_data')),
       onClick: confirmDelete,
     },
   ];
