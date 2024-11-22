@@ -39,7 +39,12 @@ const DistanceFromDevice: React.FC<DistanceFromDeviceProps> = ({
           setDistance('?');
         }
       } else {
-        calculateDistance();
+        const authStatus = await Geolocation.requestAuthorization('whenInUse'); 
+
+        if (authStatus === 'granted') {
+          console.log('Permission granted');
+          calculateDistance();
+        }    
       }
     };
 
