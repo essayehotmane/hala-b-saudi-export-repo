@@ -53,7 +53,10 @@
       <key>Purpose</key>
       <string>We need your location for temporary access during this session for showing rellated data to each field.</string>
   </dict>
-
+  <key>com.apple.developer.associated-domains</key>
+  <array>
+      <string>webcredentials:hala-b-saudi.firebaseapp.com</string>
+  </array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

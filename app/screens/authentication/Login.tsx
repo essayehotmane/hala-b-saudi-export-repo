@@ -292,6 +292,9 @@ const Login = ({navigation}: RouterProps) => {
                 onKeyPress={handleOtpKeyPress}
                 index={index}
                 inputRef={ref => (otpInputs.current[index] = ref)}
+                keyboardType="number-pad"
+                textContentType="oneTimeCode"
+                autoFocus={index === 0}
               />
             ))}
           </View>
