@@ -104,7 +104,7 @@ const Login = ({navigation}: RouterProps) => {
       // TODO : check this
       // Adjusted for phone number length
       if (isPrivacyChecked && isTermsChecked) {
-        setModalVisible(true);
+        signInWithPhoneNumber(phoneNumber);
       } else {
         console.log('sdfsdf');
         Alert.alert(
@@ -270,10 +270,17 @@ const Login = ({navigation}: RouterProps) => {
               </Text>
             </Text>
           </View>
-          <TouchableOpacity onPress={handleNextPress} style={styles.button}>
-            <Text style={styles.buttonText}>
-              {capitalizeFirstLetter(t('next'))}
-            </Text>
+          <TouchableOpacity
+            onPress={handleNextPress}
+            style={styles.button}
+            disabled={isLoginLoading}>
+            {isLoginLoading ? (
+              <ActivityIndicator size="small" color="white" />
+            ) : (
+              <Text style={styles.buttonText}>
+                {capitalizeFirstLetter(t('next'))}
+              </Text>
+            )}
           </TouchableOpacity>
         </View>
       ) : (
