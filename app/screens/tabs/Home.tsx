@@ -48,10 +48,6 @@ const Home = () => {
   const cities = useSelector((state: RootState) => state.city.cities);
   const [username, setUsername] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [
-    isCountryAndCitySelectionVisible,
-    setIsCountryAndCitySelectionVisible,
-  ] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const language = useSelector(selectLanguage);
   const languageLoading = useSelector(loadingLanguage);
@@ -136,25 +132,6 @@ const Home = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const getSelectedCity = async () => {
-      try {
-        // Dispatch action to get selected city
-        const selectedCity = await dispatch(getCityFromStorage());
-        console.log('selected city ?', selectedCity.payload);
-
-        // If no city is selected, show the selection modal
-        if (!selectedCity.payload) {
-          setIsCountryAndCitySelectionVisible(true);
-        }
-      } catch (error) {
-        console.error('Error fetching selected city:', error);
-      }
-    };
-
-    getSelectedCity();
-  }, [dispatch]);
-
-  useEffect(() => {
     const getTokenAndFetchCategories = async () => {
       try {
         const response = await dispatch(
@@ -208,15 +185,6 @@ const Home = () => {
 
   const handleUsernameChange = (text: string) => setUsername(text);
 
-  const handleSaveCity = async selectedCity => {
-    try {
-      await dispatch(saveCityToStorage(selectedCity)).unwrap();
-      setIsCountryAndCitySelectionVisible(false);
-    } catch (error) {
-      console.error('Error saving city:', error);
-    }
-  };
-
   const loadMoreCategories = async () => {
     const nextPage = currentPage + 1;
     if (nextPage <= totalPages) {
@@ -241,32 +209,6 @@ const Home = () => {
           onChange={handleUsernameChange}
         />
       </View>
-    );
-  }
-
-  if (isCountryAndCitySelectionVisible) {
-    return (
-      <Modal
-        transparent={true}
-        visible={isCountryAndCitySelectionVisible}
-        animationType="fade"
-        onRequestClose={() => {}}>
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContainer}>
-            <CountryCitySelector
-              title={capitalizeFirstLetter(t('select_country_city'))}
-              confirmText={capitalizeFirstLetter(t('confirm'))}
-              selectCountryText={capitalizeFirstLetter(t('select_country'))}
-              selectCityText={capitalizeFirstLetter(t('select_city'))}
-              countries={countries}
-              cities={cities}
-              onSelect={cityId => {
-                handleSaveCity(cityId);
-              }}
-            />
-          </View>
-        </View>
-      </Modal>
     );
   }
 
