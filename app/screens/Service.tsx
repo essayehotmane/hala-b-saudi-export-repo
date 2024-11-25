@@ -83,7 +83,7 @@ const ServicePage = ({route}) => {
           dispatch(clearServices());
 
           await dispatch(
-            fetchServices({token, categoryId, cityId, page: 1}),
+            fetchServices({token, categoryId, cityId: 1, page: 1}), // get all DOHA's services
           ).unwrap();
         }
       } catch (error) {
@@ -106,7 +106,7 @@ const ServicePage = ({route}) => {
         const categoryId = category.id;
         const cityId = selectedCity.payload;
         await dispatch(
-          fetchServices({token, categoryId, cityId, page: nextPage}),
+          fetchServices({token, categoryId, cityId: 1, page: nextPage}), // get all DOHA's services
         ).unwrap();
       }
     }
