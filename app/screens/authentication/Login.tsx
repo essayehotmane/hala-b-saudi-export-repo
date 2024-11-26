@@ -310,6 +310,16 @@ const Login = ({navigation}: RouterProps) => {
               {capitalizeFirstLetter(t('confirm'))}
             </Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.editButton}
+            onPress={() => {
+              setshowNumberForm(true);
+              setIsLoginLoading(false);
+            }}>
+            <Text style={styles.editButtonText}>
+              {capitalizeFirstLetter(t('edit'))}
+            </Text>
+          </TouchableOpacity>
         </View>
       )}
       <MyModal
@@ -354,7 +364,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ECF1EE',
   },
   button: {
-    marginTop: 20,
+    marginTop: 5,
     backgroundColor: '#00502A',
     paddingVertical: 15,
     paddingHorizontal: 30,
@@ -397,6 +407,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
+  },
+  editButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  editButtonText: {
+    textAlign: 'center',
+    color: '#00502A',
+    fontSize: 16,
   },
 });
 

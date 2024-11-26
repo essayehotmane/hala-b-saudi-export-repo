@@ -14,6 +14,7 @@ interface DiscountModalProps {
   onClose: () => void;
   getNewCode: () => void;
   code: string;
+  discount: string;
   title: string;
   paragraph: string;
   buttonText: string;
@@ -24,6 +25,7 @@ const DiscountModal: React.FC<DiscountModalProps> = ({
   onClose,
   getNewCode,
   code,
+  discount,
   title,
   paragraph,
   buttonText,
@@ -48,6 +50,7 @@ const DiscountModal: React.FC<DiscountModalProps> = ({
 
           <Text style={styles.modalTitle}>{title} :</Text>
           <Text style={styles.code}>{code}</Text>
+          <Text style={styles.discount}>-{discount}%</Text>
           <Text style={styles.additionalText}>{paragraph}</Text>
 
           <TouchableOpacity style={styles.nextButton} onPress={getNewCode}>
@@ -91,6 +94,7 @@ const styles = StyleSheet.create({
   },
   closeButtonText: {
     color: '#fff',
+    textAlign: 'center',
     fontSize: 16,
   },
   iconContainer: {
@@ -100,8 +104,14 @@ const styles = StyleSheet.create({
   code: {
     color: '#00502A',
     fontWeight: 'bold',
+    fontSize: 30,
+    marginBottom: 10,
+  },
+  discount: {
+    color: '#00502A',
+    fontWeight: 'bold',
     fontSize: 46,
-    marginBottom: 60,
+    marginBottom: 30,
   },
   additionalText: {
     color: '#5B5B5B',
