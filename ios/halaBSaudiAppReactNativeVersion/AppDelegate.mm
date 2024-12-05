@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import <Firebase.h>
+#import "RNFBAppCheckModule.h"
 #import <React/RCTBundleURLProvider.h>
 
 @implementation AppDelegate
@@ -10,6 +11,7 @@
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
  // if ([FIRApp defaultApp] == nil) {
+      [RNFBAppCheckModule sharedInstance];
         [FIRApp configure];
  // }
   self.initialProps = @{};

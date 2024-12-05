@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import HeaderLogo from '../components/HeaderLogo';
 import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
 import {Linking, Platform, Alert} from 'react-native';
@@ -16,6 +17,7 @@ import {RootState} from '../slices/store';
 import ServiceImage from '../components/ServiceImage';
 import {fetchFavorites} from '../features/favorite/favoriteSlice';
 import {getUserFromStorage, issueToken} from '../features/user/userSlice';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {
   fetchTranslations,
   loadingLanguage,
@@ -23,11 +25,11 @@ import {
   selectTranslations,
   setLanguage,
 } from '../features/translation/translationSlice';
-import CapitalizeFirstLetter from '../utils/capitalizeFirstLetter';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ServiceDetails = ({route}) => {
   const service = route.params;
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -164,7 +166,13 @@ const ServiceDetails = ({route}) => {
         buttonText={capitalizeFirstLetter(t('redeem_your_discount'))}
       />
 
-      <HeaderLogo />
+      <View style={styles.headerContainer}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon name="arrow-back" size={24} color="#000" />
+        </TouchableOpacity>
+        <HeaderLogo />
+      </View>
+
       <View style={styles.imageContainer}>
         <ServiceImage
           uri={service.logo}
@@ -185,7 +193,7 @@ const ServiceDetails = ({route}) => {
           style={styles.getDiscountButton}
           onPress={() => getDiscountCode(service.id, userId, token)}>
           <Text style={styles.getDiscountText}>
-            {CapitalizeFirstLetter(t('get_a_discount_code'))}
+            {capitalizeFirstLetter(t('get_a_discount_code'))}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -194,7 +202,7 @@ const ServiceDetails = ({route}) => {
             openInMaps(service.lat, service.long);
           }}>
           <Text style={styles.openMapsText}>
-            {CapitalizeFirstLetter(t('open_in_maps'))}
+            {capitalizeFirstLetter(t('open_in_maps'))}
           </Text>
         </TouchableOpacity>
       </View>
@@ -204,13 +212,23 @@ const ServiceDetails = ({route}) => {
 
 export default ServiceDetails;
 
-// Styles remain unchanged
+// Updated styles
 const styles = StyleSheet.create({
   container: {
     height: '100%',
     width: '100%',
     paddingHorizontal: 30,
     backgroundColor: 'white',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  backButtonText: {
+    color: '#00502A',
+    fontSize: 16,
+    marginRight: 10,
   },
   loadingContainer: {
     height: '100%',

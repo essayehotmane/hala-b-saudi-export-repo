@@ -220,7 +220,7 @@ const Profile = () => {
     },
     {
       icon: 'trash-outline',
-      title: capitalizeFirstLetter(t('delete_my_account_and_data')),
+      title: capitalizeFirstLetter(t('Are you sure you want to delete your account?')),
       onClick: confirmDelete,
     },
   ];

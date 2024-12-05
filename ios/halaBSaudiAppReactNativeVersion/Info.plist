@@ -42,21 +42,17 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Using Location to get user current location to get data accordingly</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Using Location to get user current location to get data accordingly</string>
-  <key>NSLocationAlwaysUsageDescription</key>
-  <string>Using Location to get user current location to get data accordingly.</string>
-  <key>NSLocationTemporaryUsageDescriptionDictionary</key>
-  <dict>
-      <key>Purpose</key>
-      <string>We need your location for temporary access during this session for showing rellated data to each field.</string>
-  </dict>
-  <key>com.apple.developer.associated-domains</key>
-  <array>
-      <string>webcredentials:hala-b-saudi.firebaseapp.com</string>
-  </array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Using Location to get user current location to get data accordingly.</string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>Purpose</key>
+		<string>We need your location for temporary access during this session for showing rellated data to each field.</string>
+	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Using Location to get user current location to get data accordingly</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -76,6 +72,11 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -90,5 +91,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>webcredentials:hala-b-saudi.firebaseapp.com</string>
+	</array>
 </dict>
 </plist>

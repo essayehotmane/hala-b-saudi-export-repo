@@ -1,6 +1,6 @@
 // firebaseConfig.js
 import {initializeApp} from '@react-native-firebase/app';
-
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 // const firebaseConfig = {
 //   apiKey: 'AIzaSyCt4uclZlMYmPJRNLLEpqNaYQyT9Przcm0',
 //   authDomain: 'hala-b-saudi-test.firebaseapp.com',
@@ -22,9 +22,21 @@ const firebaseConfig = {
 };
 
 let firebaseApp;
+//let rnfbProvider;
 
 export const initializeFirebase = () => {
   if (!firebaseApp) {
     firebaseApp = initializeApp(firebaseConfig);
+//     rnfbProvider = firebase.appCheck().newReactNativeFirebaseAppCheckProvider();
+// rnfbProvider.configure({
+//   web: {
+//     provider: 'reCaptchaV3',
+//     siteKey: '6LccPYoqAAAAAL_WMyF3O7vWwQK22EcQsJkunf1K',
+//   },
+// });
+//     firebase.appCheck().initializeAppCheck({ provider: rnfbProvider, isTokenAutoRefreshEnabled: true });
   }
 };
+
+// site key  captcha: 6LccPYoqAAAAAL_WMyF3O7vWwQK22EcQsJkunf1K
+// secret key: 6LccPYoqAAAAACuTEds8uXsuaoLE6TxahP04JZGY
